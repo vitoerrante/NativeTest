@@ -1,4 +1,11 @@
 build/
 bin/
+lib/
+CMakeFiles/
+DUMMY_assets/
+
+/cmake_install.cmake
+/CMakeCache.txt
+/Makefile
 
 .vscode/
