@@ -12,6 +12,8 @@ public:
     void scroll_callback(double xoffset, double yoffset);
     void cursor_position_callback(double xpos, double ypos);
     void size_callback(int width, int height);
+    void GLClearError();
+    bool GLLogCall(const char* function, const char* file, int line);
 
 private:
     int _width{};

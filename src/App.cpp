@@ -1,13 +1,39 @@
 #include "App.hpp"
 #include "GLFW/glfw3.h"
 
+#include <iostream>
+
+#define ASSERT(x) if (!(x)) __builtin_trap();
+#define GLCall(x) GLClearError();\
+    x;\
+    ASSERT(GLLogCall(#x, __FILE__, __LINE__))
+
 App::App(int window_width, int window_height)
 {
     size_callback(window_width, window_height);
 }
 
+void App::GLClearError()
+{
+    while(glGetError() != GL_NO_ERROR);
+}
+
+bool App::GLLogCall(const char* function, const char* file, int line)
+{
+    while(GLenum error = glGetError())
+    {
+        std::cout << "[OpenGL Error] (" << error << ")" << function <<
+        "   " << file << ":" << line << std::endl;
+        return false;
+    }
+    return true;
+}
+
 void App::render()
 {
+
+    GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
+
     glClearColor(0.f, 0.f, 0.f, 1.f);
     glClear(GL_COLOR_BUFFER_BIT);
 }
