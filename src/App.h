@@ -3,6 +3,14 @@
 #include "GLFW/glfw3.h"
 #include "glad/glad.h"
 
+#define ASSERT(x) if (!(x)) __builtin_trap();
+#define GLCall(x) GLClearError();\
+    x;\
+    ASSERT(GLLogCall(#x, __FILE__, __LINE__))
+
+void GLClearError();
+bool GLLogCall(const char* function, const char* file, int line);
+
 class App {
 public:
     App(int window_width, int window_height);
@@ -12,9 +20,6 @@ public:
     void scroll_callback(double xoffset, double yoffset);
     void cursor_position_callback(double xpos, double ypos);
     void size_callback(int width, int height);
-    void GLClearError();
-    bool GLLogCall(const char* function, const char* file, int line);
-
 private:
     int _width{};
     int _height{};

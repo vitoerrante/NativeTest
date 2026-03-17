@@ -1,4 +1,7 @@
-#include "App.hpp"
+#include "App.h"
+
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
 
 static App& get_app(GLFWwindow* window)
 {
@@ -57,9 +60,36 @@ int main()
         get_app(window).size_callback(width, height);
     });
 
+    float positions[] = {
+        -0.5f, -0.5f, //0
+        0.5f, -0.5f, // 1
+        0.5f, 0.5f, // 2
+        -0.5f, 0.5f //3
+    };
+
+    unsigned int indices[] = {
+        0, 1, 2,
+        2, 3, 0
+    };
+
+    /* IndexBuffer and VertexBuffer */
+    unsigned int vao;
+    GLCall(glGenVertexArrays(1, &vao));
+    GLCall(glBindVertexArray(vao));
+
+    VertexBuffer vb(positions, 4 * 2 * sizeof(float));
+
+    GLCall(glEnableVertexAttribArray(0));
+    GLCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));
+
+    IndexBuffer ib(indices, 6);
+
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window)) {
         app.render();
+        
+        ib.Bind();
+        GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
