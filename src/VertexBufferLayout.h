@@ -1,7 +1,7 @@
 #pragma once
 #include "App.h"
 #include <vector>
-
+#include <cassert>
 
 struct VertexBufferElement
 {
@@ -17,9 +17,9 @@ struct VertexBufferElement
             case GL_UNSIGNED_INT: return 4;
             case GL_UNSIGNED_BYTE: return 1;
         }
-        ASSERT(false);
+        assert(false);
         return 0;
-    }
+    };
 };
 
 class VertexBufferLayout

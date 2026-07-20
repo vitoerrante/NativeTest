@@ -3,6 +3,7 @@
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "VertexArray.h"
+#include "Shader.h"
 
 static App& get_app(GLFWwindow* window)
 {
@@ -61,6 +62,7 @@ int main()
         get_app(window).size_callback(width, height);
     });
 
+    // Cube vertices positions
     float positions[] = {
         -0.5f, -0.5f, //0
         0.5f, -0.5f, // 1
@@ -68,6 +70,7 @@ int main()
         -0.5f, 0.5f //3
     };
 
+    // Cube buffer indice
     unsigned int indices[] = {
         0, 1, 2,
         2, 3, 0
@@ -87,10 +90,24 @@ int main()
 
     IndexBuffer ib(indices, 6);
 
+    Shader shader("assets/Basic.shader");
+    shader.Bind();
+
+    shader.SetUniform4f("u_Color", 0.2f, 0.3f, 0.8f, 1.0f);
+
+    va.Unbind();
+    shader.Unbind();
+    GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
+    GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
+
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window)) {
         app.render();
         
+        shader.Bind();
+        shader.SetUniform4f("u_Color", 0.2f, 0.3f, 0.8f, 1.0f);
+
+        va.Bind();
         ib.Bind();
         GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr));
 

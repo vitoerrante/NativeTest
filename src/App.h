@@ -3,6 +3,9 @@
 #include "GLFW/glfw3.h"
 #include "glad/glad.h"
 
+#include "VertexArray.h"
+#include "IndexBuffer.h"
+
 #define ASSERT(x) if (!(x)) __builtin_trap();
 #define GLCall(x) GLClearError();\
     x;\
