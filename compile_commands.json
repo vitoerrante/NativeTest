@@ -7,6 +7,12 @@
 },
 {
   "directory": "/home/arch/www/NativeTest",
+  "command": "/usr/bin/c++  -I/home/arch/www/NativeTest/src -I/home/arch/www/NativeTest/lib/glfw/include -I/home/arch/www/NativeTest/lib/glad/include -Werror -Wall -Wextra -Wpedantic -pedantic-errors -Wimplicit-fallthrough -o CMakeFiles/NativeTest.dir/src/main.cpp.o -c /home/arch/www/NativeTest/src/main.cpp",
+  "file": "/home/arch/www/NativeTest/src/main.cpp",
+  "output": "CMakeFiles/NativeTest.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/arch/www/NativeTest",
   "command": "/usr/bin/c++  -I/home/arch/www/NativeTest/src -I/home/arch/www/NativeTest/lib/glfw/include -I/home/arch/www/NativeTest/lib/glad/include -Werror -Wall -Wextra -Wpedantic -pedantic-errors -Wimplicit-fallthrough -o CMakeFiles/NativeTest.dir/src/App.cpp.o -c /home/arch/www/NativeTest/src/App.cpp",
   "file": "/home/arch/www/NativeTest/src/App.cpp",
   "output": "CMakeFiles/NativeTest.dir/src/App.cpp.o"
@@ -46,12 +52,6 @@
   "command": "/usr/bin/c++  -I/home/arch/www/NativeTest/src -I/home/arch/www/NativeTest/lib/glfw/include -I/home/arch/www/NativeTest/lib/glad/include -Werror -Wall -Wextra -Wpedantic -pedantic-errors -Wimplicit-fallthrough -o CMakeFiles/NativeTest.dir/src/VertexBuffer.cpp.o -c /home/arch/www/NativeTest/src/VertexBuffer.cpp",
   "file": "/home/arch/www/NativeTest/src/VertexBuffer.cpp",
   "output": "CMakeFiles/NativeTest.dir/src/VertexBuffer.cpp.o"
-},
-{
-  "directory": "/home/arch/www/NativeTest",
-  "command": "/usr/bin/c++  -I/home/arch/www/NativeTest/src -I/home/arch/www/NativeTest/lib/glfw/include -I/home/arch/www/NativeTest/lib/glad/include -Werror -Wall -Wextra -Wpedantic -pedantic-errors -Wimplicit-fallthrough -o CMakeFiles/NativeTest.dir/src/main.cpp.o -c /home/arch/www/NativeTest/src/main.cpp",
-  "file": "/home/arch/www/NativeTest/src/main.cpp",
-  "output": "CMakeFiles/NativeTest.dir/src/main.cpp.o"
 },
 {
   "directory": "/home/arch/www/NativeTest",

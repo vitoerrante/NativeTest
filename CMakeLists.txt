@@ -3,8 +3,23 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 cmake_minimum_required(VERSION 3.8)
 
 project(NativeTest)
-add_executable(${PROJECT_NAME})
+add_executable(${PROJECT_NAME}
+    src/main.cpp
+    src/App.cpp
+    src/IndexBuffer.cpp
+    src/Renderer.cpp
+    src/Shader.cpp
+    src/Texture.cpp
+    src/VertexArray.cpp
+    src/VertexBuffer.cpp
+    src/std_image/std_image.cpp
+)
+
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_11)
+
+# Disable GLM_TEST
+set(GLM_TEST_ENABLE OFF CACHE BOOL "Build test programs" FORCE)
+target_include_directories(NativeTest PRIVATE src)
 
 # Enable many good warnings
 if (MSVC)
@@ -23,7 +38,17 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 
 # Add all the files
 file(GLOB_RECURSE MY_SOURCES CONFIGURE_DEPENDS src/*)
-target_sources(${PROJECT_NAME} PRIVATE ${MY_SOURCES})
+target_sources(${PROJECT_NAME} PRIVATE
+    src/main.cpp
+    src/App.cpp
+    src/IndexBuffer.cpp
+    src/Renderer.cpp
+    src/Shader.cpp
+    src/Texture.cpp
+    src/VertexArray.cpp
+    src/VertexBuffer.cpp
+    src/std_image/std_image.cpp
+)
 target_include_directories(${PROJECT_NAME} PRIVATE src)
 
 # ---Add GLFW---

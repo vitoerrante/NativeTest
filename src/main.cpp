@@ -7,6 +7,9 @@
 #include "VertexArray.h"
 #include "VertexBuffer.h"
 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+
 static App &get_app(GLFWwindow *window) {
   return *reinterpret_cast<App *>(glfwGetWindowUserPointer(window));
 }
@@ -28,7 +31,7 @@ int main() {
 
   // Window Size and Title name
   GLFWwindow *window =
-      glfwCreateWindow(600, 600, "Hello World", nullptr, nullptr);
+      glfwCreateWindow(900, 600, "Native Test", nullptr, nullptr);
   if (!window) {
     glfwTerminate();
     return -1;
@@ -99,10 +102,13 @@ int main() {
 
   IndexBuffer ib(indices, 6);
 
+  glm::mat4 proj = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+
   Shader shader("assets/Basic.shader");
   shader.Bind();
 
   shader.SetUniform4f("u_Color", 0.2f, 0.3f, 0.8f, 1.0f);
+  shader.SetUniformMat4f("u_MVP", proj);
 
   Texture texture("assets/images.jpg");
   texture.Bind();
